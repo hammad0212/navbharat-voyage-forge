@@ -58,7 +58,7 @@ const WinterTours = () => {
         {/* Tours Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {tours.map((tour) => (
-            <Card key={tour.id} className="group overflow-hidden hover:shadow-warm transition-all duration-300 hover:-translate-y-2">
+            <Card key={tour.id} className="group overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
               <div className="relative overflow-hidden">
                 <img
                   src={tour.image}
@@ -66,12 +66,12 @@ const WinterTours = () => {
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4">
-                  <Badge className="travel-gradient text-primary-foreground">
+                  <Badge className="bg-gradient-to-r from-orange-500 to-amber-500 text-white">
                     {tour.discount}
                   </Badge>
                 </div>
-                <div className="absolute top-4 right-4 flex items-center space-x-1 bg-overlay-dark text-white px-2 py-1 rounded-full text-sm">
-                  <Star className="h-3 w-3 fill-current text-accent" />
+                <div className="absolute top-4 right-4 flex items-center space-x-1 bg-black/50 text-white px-2 py-1 rounded-full text-sm">
+                  <Star className="h-3 w-3 fill-current text-amber-400" />
                   <span>{tour.rating}</span>
                 </div>
               </div>
@@ -105,12 +105,12 @@ const WinterTours = () => {
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-2xl font-bold text-primary">
+                    <span className="text-2xl font-bold text-orange-600">
                       {tour.price}
                     </span>
                     <span className="text-sm text-muted-foreground"> per person</span>
                   </div>
-                  <Button className="travel-gradient">
+                  <Button className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white">
                     Book Now
                   </Button>
                 </div>
@@ -121,7 +121,7 @@ const WinterTours = () => {
 
         {/* CTA Section */}
         <div className="text-center mt-12">
-          <Button size="lg" className="travel-gradient text-lg px-8 py-3">
+          <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white text-lg px-8 py-3">
             View All Winter Tours
           </Button>
         </div>

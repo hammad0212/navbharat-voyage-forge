@@ -24,8 +24,7 @@ const Hero = () => {
         }}
       />
       
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-overlay-dark" />
+      <div className="absolute inset-0" style={{ backgroundColor: 'rgba(122, 82, 39, 0.7)' }} />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
@@ -33,22 +32,22 @@ const Hero = () => {
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 hero-text">
             Let us Help You Plan Your
           </h1>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-accent mb-8 hero-text">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-amber-400 mb-8 hero-text">
             Lifetime Memories
           </h2>
           
           {/* Search Bar */}
           <div className="max-w-2xl mx-auto mb-16">
-            <div className="relative glass-effect rounded-full p-2">
+            <div className="relative backdrop-blur-sm bg-white/90 rounded-full p-2 shadow-lg">
               <div className="flex items-center">
                 <Input
                   type="text"
                   placeholder="Search Destinations (Kashmir, Goa, Rajasthan...)"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="border-0 bg-transparent text-foreground placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0 text-lg px-6"
+                  className="border-0 bg-transparent text-gray-800 placeholder:text-gray-600 focus-visible:ring-0 focus-visible:ring-offset-0 text-lg px-6"
                 />
-                <Button size="icon" className="rounded-full travel-gradient">
+                <Button size="icon" className="rounded-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600">
                   <Search className="h-5 w-5" />
                 </Button>
               </div>
@@ -60,10 +59,10 @@ const Hero = () => {
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="glass-effect rounded-xl p-6 text-center hover:scale-105 transition-transform duration-300"
+                className="backdrop-blur-sm bg-white/20 border border-white/30 rounded-xl p-6 text-center hover:scale-105 transition-transform duration-300"
               >
                 <div className="text-3xl mb-2">{stat.icon}</div>
-                <div className="text-2xl md:text-3xl font-bold text-accent mb-1">
+                <div className="text-2xl md:text-3xl font-bold text-amber-400 mb-1">
                   {stat.number}
                 </div>
                 <div className="text-sm md:text-base text-white font-medium">

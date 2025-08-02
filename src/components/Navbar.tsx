@@ -34,12 +34,12 @@ const Navbar = () => {
       </div>
 
       {/* Main navbar */}
-      <nav className="glass-effect border-b">
+      <nav className="backdrop-blur-md bg-white/90 border-b border-gray-200">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center space-x-2">
-              <div className="travel-gradient p-2 rounded-lg">
+              <div className="bg-gradient-to-r from-orange-500 to-amber-500 p-2 rounded-lg">
                 <span className="text-primary-foreground font-bold text-xl">NBT</span>
               </div>
               <div>
