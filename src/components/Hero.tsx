@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, MapPin } from "lucide-react";
-import heroImage from "@/assets/hero-mountain-sunset.jpg";
+import heroImage from "@/assets/background.png"; // Your image
 
 const Hero = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -10,7 +10,6 @@ const Hero = () => {
   const [filteredDestinations, setFilteredDestinations] = useState([]);
   const searchRef = useRef(null);
 
-  // Sample destinations data
   const destinations = [
     { name: "Kashmir", type: "Hill Station", description: "Paradise on Earth with beautiful valleys" },
     { name: "Goa", type: "Beach", description: "Beautiful beaches and nightlife" },
@@ -26,7 +25,6 @@ const Hero = () => {
     { name: "Agra", type: "Heritage", description: "Home to the iconic Taj Mahal" },
   ];
 
-  // Filter destinations based on search query
   useEffect(() => {
     if (searchQuery.trim() === "") {
       setFilteredDestinations([]);
@@ -44,7 +42,6 @@ const Hero = () => {
     setShowResults(true);
   }, [searchQuery]);
 
-  // Close results when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
@@ -73,12 +70,16 @@ const Hero = () => {
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${heroImage})`,
-        }}
+        style={{ backgroundImage: `url(${heroImage})` }}
       />
       
-      <div className="absolute inset-0" style={{ backgroundColor: 'rgba(122, 82, 39, 0.7)' }} />
+      {/* Gradient Overlay */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5))",
+        }}
+      />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
@@ -89,7 +90,7 @@ const Hero = () => {
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-amber-400 mb-8 hero-text">
             Lifetime Memories
           </h2>
-          
+
           {/* Search Bar */}
           <div className="max-w-2xl mx-auto mb-16" ref={searchRef}>
             <div className="relative backdrop-blur-sm bg-white/90 rounded-full p-2 shadow-lg">
@@ -101,12 +102,15 @@ const Hero = () => {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="border-0 bg-transparent text-gray-800 placeholder:text-gray-600 focus-visible:ring-0 focus-visible:ring-offset-0 text-lg px-6"
                 />
-                <Button size="icon" className="rounded-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600">
-                  <Search className="h-5 w-5" />
+                <Button
+                  size="icon"
+                  className="rounded-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
+                >
+                  <Search className="h-5 w-5 text-white" />
                 </Button>
               </div>
-              
-              {/* Search Results Dropdown */}
+
+              {/* Results */}
               {showResults && filteredDestinations.length > 0 && (
                 <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-2xl border border-gray-200 max-h-80 overflow-y-auto z-50">
                   {filteredDestinations.map((destination, index) => (
@@ -116,20 +120,20 @@ const Hero = () => {
                       className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors"
                     >
                       <div className="flex-shrink-0">
-                        <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full flex items-center justify-center">
+                        <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center">
                           <MapPin className="h-4 w-4 text-white" />
                         </div>
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-semibold text-gray-800 text-sm truncate">{destination.name}</div>
-                        <div className="text-xs text-orange-600 font-medium">{destination.type}</div>
+                        <div className="text-xs text-blue-600 font-medium">{destination.type}</div>
                         <div className="text-xs text-gray-600 line-clamp-1">{destination.description}</div>
                       </div>
                     </div>
                   ))}
                 </div>
               )}
-              
+
               {/* No Results */}
               {showResults && filteredDestinations.length === 0 && searchQuery.trim() !== "" && (
                 <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-2xl border border-gray-200 p-4 z-50">
@@ -141,7 +145,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Statistics */}
+          {/* Stats */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {stats.map((stat, index) => (
               <div
@@ -161,7 +165,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll Down Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
         <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
           <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>

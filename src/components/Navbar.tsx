@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
+import logo from '../assets/travel merge logo white.png'; 
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,49 +19,55 @@ const Navbar = () => {
   return (
     <header className="relative">
       {/* Top contact bar */}
-      <div className="bg-primary text-primary-foreground py-2 px-4">
-        <div className="container mx-auto flex flex-wrap items-center justify-between text-sm">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-1">
-              <Phone className="h-3 w-3" />
-              <span>(079) 4848 4999, 4848 4222, +91 98258 04077</span>
-            </div>
-            <div className="flex items-center space-x-1">
-              <Mail className="h-3 w-3" />
-              <span>info@navbharattourism.com</span>
-            </div>
-          </div>
-        </div>
+      <div className="bg-blue-500 text-primary-foreground py-2 px-4">
+  <div className="container mx-auto flex flex-wrap items-center justify-between text-sm">
+    <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-1">
+        <Phone className="h-3 w-3 text-white" />
+        <span className="text-white">(+91) 9978615150</span>
       </div>
+      <div className="flex items-center space-x-1">
+        <Mail className="h-3 w-3 text-white" />
+        <span className="text-white">travelmergeinfo@gmail.com</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 
       {/* Main navbar */}
       <nav className="backdrop-blur-md bg-white/90 border-b border-gray-200">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <div className="flex items-center space-x-2">
-              <div className="bg-gradient-to-r from-orange-500 to-amber-500 p-2 rounded-lg">
-                <span className="text-primary-foreground font-bold text-xl">NBT</span>
-              </div>
-              <div>
-                <h1 className="font-bold text-lg text-foreground">NavBharat Tours</h1>
-                <p className="text-xs text-muted-foreground">Creating Lifetime Memories</p>
-              </div>
-            </div>
+           <div className="flex items-center space-x-2">
+  <div className=" p-2 rounded-lg">
+    <img
+      src={logo}
+      alt="Logo"
+      className="w-15 h-14 object-contain rounded"
+    />
+  </div>
+  <div>
+    <h1 className="font-bold text-lg text-foreground">TravelMergeHolidays</h1>
+    <p className="text-xs text-muted-foreground">Creating Lifetime Memories</p>
+  </div>
+</div>
 
             {/* Desktop navigation */}
-            <div className="hidden lg:flex items-center space-x-1">
-              {navItems.map((item) => (
-                <Button
-                  key={item.name}
-                  variant="ghost"
-                  className="text-foreground hover:bg-accent hover:text-accent-foreground"
-                  asChild
-                >
-                  <a href={item.href}>{item.name}</a>
-                </Button>
-              ))}
-            </div>
+           <div className="hidden lg:flex items-center space-x-1">
+  {navItems.map((item) => (
+    <Button
+      key={item.name}
+      variant="ghost"
+      className="text-foreground hover:bg-blue-600 hover:text-white"
+      asChild
+    >
+      <a href={item.href}>{item.name}</a>
+    </Button>
+  ))}
+</div>
+
 
             {/* Mobile menu button */}
             <Button
