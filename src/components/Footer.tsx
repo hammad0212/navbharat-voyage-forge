@@ -12,6 +12,8 @@ import {
   Send
 } from "lucide-react";
 
+import logo from '../assets/travel merge logo white.png'; 
+
 const Footer = () => {
   const quickLinks = [
     "About Us",
@@ -42,9 +44,13 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="bg-gradient-to-r from-orange-500 to-amber-500 p-2 rounded-lg">
-                <span className="text-primary-foreground font-bold text-xl">NBT</span>
-              </div>
+              <div className=" p-2 rounded-lg">
+    <img
+      src={logo}
+      alt="Logo"
+      className="w-10 h-14 object-contain rounded"
+    />
+  </div>
               <div>
                 <h3 className="font-bold text-lg">TravelMergeHolidays</h3>
                 <p className="text-sm text-muted">Creating Lifetime Memories</p>
@@ -112,23 +118,33 @@ const Footer = () => {
                 <div className="flex items-start space-x-2">
                   <Phone className="h-4 w-4 mt-1 text-amber-400" />
                   <div className="text-sm text-gray-400">
-                    <p>(079) 4848 4999</p>
-                    <p>(079) 4848 4222</p>
-                    <p>+91 98258 04077</p>
+                    <p>(+91) 9978615150</p>
+                  
                   </div>
                 </div>
                 <div className="flex items-start space-x-2">
                   <Mail className="h-4 w-4 mt-1 text-amber-400" />
                   <div className="text-sm text-gray-400">
-                    <p>info@navbharattourism.com</p>
+                    <p>travelmergeinfo@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-2">
-                  <MapPin className="h-4 w-4 mt-1 text-amber-400" />
-                  <div className="text-sm text-gray-400">
-                    <p>Ahmedabad, Gujarat, India</p>
-                  </div>
-                </div>
+  <MapPin className="h-4 w-4 mt-1 text-amber-400" />
+  <div className="text-sm text-gray-400">
+    <a
+      href="https://www.google.com/maps/place/T%2F55,+4th+Floor,+Al-Muqaam,+Nr+APMC+Market,+Vishala+Circle,+Sarkhej+Road,+Ahmedabad,+Gujarat"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:underline text-gray-400"
+    >
+      <p>
+        T/55, 4rd Floor, Al-Muqaam,, Nr APMC Market , Vishala Circle Sarkhej
+        Road, Vishala, ,Ahmedabad ,Gujarat
+      </p>
+    </a>
+  </div>
+</div>
+
               </div>
             </div>
 
