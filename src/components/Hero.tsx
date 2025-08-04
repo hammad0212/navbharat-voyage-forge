@@ -108,22 +108,22 @@ const Hero = () => {
               
               {/* Search Results Dropdown */}
               {showResults && filteredDestinations.length > 0 && (
-                <div className="absolute top-full mt-2 w-full bg-white rounded-2xl shadow-xl border border-gray-100 max-h-80 overflow-y-auto z-50">
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-2xl border border-gray-200 max-h-80 overflow-y-auto z-50">
                   {filteredDestinations.map((destination, index) => (
                     <div
                       key={index}
                       onClick={() => handleDestinationClick(destination)}
-                      className="flex items-center gap-3 p-4 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors"
                     >
                       <div className="flex-shrink-0">
-                        <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full flex items-center justify-center">
-                          <MapPin className="h-5 w-5 text-white" />
+                        <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full flex items-center justify-center">
+                          <MapPin className="h-4 w-4 text-white" />
                         </div>
                       </div>
-                      <div className="flex-1">
-                        <div className="font-semibold text-gray-800">{destination.name}</div>
-                        <div className="text-sm text-orange-600 font-medium">{destination.type}</div>
-                        <div className="text-sm text-gray-600">{destination.description}</div>
+                      <div className="flex-1 min-w-0">
+                        <div className="font-semibold text-gray-800 text-sm truncate">{destination.name}</div>
+                        <div className="text-xs text-orange-600 font-medium">{destination.type}</div>
+                        <div className="text-xs text-gray-600 line-clamp-1">{destination.description}</div>
                       </div>
                     </div>
                   ))}
@@ -132,8 +132,8 @@ const Hero = () => {
               
               {/* No Results */}
               {showResults && filteredDestinations.length === 0 && searchQuery.trim() !== "" && (
-                <div className="absolute top-full mt-2 w-full bg-white rounded-2xl shadow-xl border border-gray-100 p-4 z-50">
-                  <div className="text-center text-gray-500">
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-2xl border border-gray-200 p-4 z-50">
+                  <div className="text-center text-gray-500 text-sm">
                     No destinations found for "{searchQuery}"
                   </div>
                 </div>
