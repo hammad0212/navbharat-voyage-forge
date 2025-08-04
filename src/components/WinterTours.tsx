@@ -7,36 +7,52 @@ const WinterTours = () => {
   const tours = [
     {
       id: 1,
-      title: "Kashmir Winter Wonderland",
-      location: "Srinagar, Gulmarg, Pahalgam",
-      duration: "6 Days / 5 Nights",
-      price: "₹25,999",
-      rating: 4.8,
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
-      highlights: ["Snow Activities", "Shikara Ride", "Local Cuisine"],
-      discount: "20% OFF"
+      title: "Kashmir Tour",
+      price: "Start Form ₹ 23,000",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop",
+      size: "large" // Takes 2 columns
     },
     {
       id: 2,
-      title: "Rajasthan Royal Heritage",
-      location: "Jaipur, Udaipur, Jodhpur",
-      duration: "8 Days / 7 Nights",
-      price: "₹32,999",
-      rating: 4.9,
-      image: "https://images.unsplash.com/photo-1599661046827-dacde645fe20?w=400&h=300&fit=crop",
-      highlights: ["Palace Tours", "Desert Safari", "Cultural Shows"],
-      discount: "15% OFF"
+      title: "Himachal Tour",
+      price: "Start Form ₹ 27,000",
+      image: "https://images.unsplash.com/photo-1587135941948-670b381f08ce?w=400&h=300&fit=crop",
+      size: "small"
     },
     {
       id: 3,
-      title: "Goa Beach Paradise",
-      location: "North & South Goa",
-      duration: "5 Days / 4 Nights",
-      price: "₹18,999",
-      rating: 4.7,
-      image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=400&h=300&fit=crop",
-      highlights: ["Beach Activities", "Water Sports", "Nightlife"],
-      discount: "25% OFF"
+      title: "Ayodhya Tour",
+      price: "Start Form ₹ 33,000",
+      image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=400&h=300&fit=crop",
+      size: "small"
+    },
+    {
+      id: 4,
+      title: "Kerala Tour",
+      price: "Start Form ₹ 26,000",
+      image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=400&h=300&fit=crop",
+      size: "small"
+    },
+    {
+      id: 5,
+      title: "Jagannath Puri Tour",
+      price: "Start Form ₹ 36,000",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+      size: "small"
+    },
+    {
+      id: 6,
+      title: "Nepal Tour",
+      price: "Start Form ₹ 29,500",
+      image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=600&h=400&fit=crop",
+      size: "large"
+    },
+    {
+      id: 7,
+      title: "North-East Tour",
+      price: "Start Form ₹ 30,500",
+      image: "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=600&h=400&fit=crop",
+      size: "large"
     }
   ];
 
@@ -56,67 +72,50 @@ const WinterTours = () => {
         </div>
 
         {/* Tours Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {tours.map((tour) => (
-            <Card key={tour.id} className="group overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-              <div className="relative overflow-hidden">
-                <img
-                  src={tour.image}
-                  alt={tour.title}
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
+          {tours.map((tour, index) => {
+            // Define grid classes based on size and position
+            let gridClass = "";
+            if (tour.size === "large") {
+              gridClass = index === 0 ? "col-span-2 row-span-2" : 
+                         index === 5 ? "col-span-2" : 
+                         "col-span-2";
+            } else {
+              gridClass = "col-span-1";
+            }
+            
+            const heightClass = tour.size === "large" ? "h-80" : "h-40";
+            
+            return (
+              <div 
+                key={tour.id} 
+                className={`${gridClass} ${heightClass} relative overflow-hidden rounded-lg group cursor-pointer hover:scale-105 transition-transform duration-300`}
+              >
+                <div 
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                  style={{
+                    backgroundImage: `url(${tour.image})`,
+                  }}
                 />
-                <div className="absolute top-4 left-4">
-                  <Badge className="bg-gradient-to-r from-orange-500 to-amber-500 text-white">
-                    {tour.discount}
-                  </Badge>
-                </div>
-                <div className="absolute top-4 right-4 flex items-center space-x-1 bg-black/50 text-white px-2 py-1 rounded-full text-sm">
-                  <Star className="h-3 w-3 fill-current text-amber-400" />
-                  <span>{tour.rating}</span>
-                </div>
-              </div>
-              
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-foreground mb-2">
-                  {tour.title}
-                </h3>
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300" />
                 
-                <div className="space-y-2 mb-4">
-                  <div className="flex items-center text-muted-foreground">
-                    <MapPin className="h-4 w-4 mr-2" />
-                    <span className="text-sm">{tour.location}</span>
-                  </div>
-                  <div className="flex items-center text-muted-foreground">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    <span className="text-sm">{tour.duration}</span>
-                  </div>
-                </div>
-
-                <div className="mb-4">
-                  <h4 className="font-semibold text-foreground mb-2">Highlights:</h4>
-                  <div className="flex flex-wrap gap-1">
-                    {tour.highlights.map((highlight, index) => (
-                      <Badge key={index} variant="secondary" className="text-xs">
-                        {highlight}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="text-2xl font-bold text-orange-600">
-                      {tour.price}
-                    </span>
-                    <span className="text-sm text-muted-foreground"> per person</span>
-                  </div>
-                  <Button className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white">
-                    Book Now
+                <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-4">
+                  <h3 className="text-white font-bold text-lg md:text-xl lg:text-2xl mb-2">
+                    {tour.title}
+                  </h3>
+                  <p className="text-white font-semibold text-sm md:text-base lg:text-lg mb-4">
+                    {tour.price}
+                  </p>
+                  <Button 
+                    variant="outline" 
+                    className="bg-transparent border-white text-white hover:bg-white hover:text-black transition-colors duration-300"
+                  >
+                    Inquire Now
                   </Button>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
+              </div>
+            );
+          })}
         </div>
 
         {/* CTA Section */}
