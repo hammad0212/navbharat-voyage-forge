@@ -87,7 +87,7 @@ const Hero = () => {
             Let us Help You Plan Your
           </h1>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-8 hero-text">
-            Dream Vacations
+            Unforgettable Trips
           </h2>
           
           {/* Search Bar */}
@@ -142,17 +142,19 @@ const Hero = () => {
           </div>
 
           {/* Statistics */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="backdrop-blur-sm bg-white/90 border border-white/30 rounded-xl p-6 text-center hover:scale-105 transition-transform duration-300"
+                className="backdrop-blur-sm bg-amber-900/80 rounded-2xl p-4 text-center hover:scale-105 transition-transform duration-300 flex flex-col items-center"
               >
-                <div className="text-3xl mb-2">{stat.icon}</div>
-                <div className="text-xl md:text-2xl font-bold text-gray-800 mb-1">
+                <div className="w-12 h-12 bg-amber-700 rounded-full flex items-center justify-center mb-3">
+                  <div className="text-white text-lg">{stat.icon}</div>
+                </div>
+                <div className="text-lg md:text-xl font-bold text-white mb-1">
                   {stat.number}
                 </div>
-                <div className="text-sm md:text-base text-gray-700 font-medium">
+                <div className="text-xs md:text-sm text-amber-100 font-medium">
                   {stat.label}
                 </div>
               </div>
