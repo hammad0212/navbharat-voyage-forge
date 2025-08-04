@@ -66,7 +66,8 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+  <section className="relative min-h-[80vh] flex items-center justify-center overflow-visible z-0">
+
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -87,12 +88,13 @@ const Hero = () => {
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 hero-text">
             Let us Help You Plan Your
           </h1>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-amber-400 mb-8 hero-text">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-blue-400 mb-8 hero-text">
             Lifetime Memories
           </h2>
 
           {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mb-16" ref={searchRef}>
+          <div className="max-w-2xl mx-auto mb-16 relative z-50" ref={searchRef}>
+
             <div className="relative backdrop-blur-sm bg-white/90 rounded-full p-2 shadow-lg">
               <div className="flex items-center">
                 <Input
@@ -146,22 +148,23 @@ const Hero = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="backdrop-blur-sm bg-white/20 border border-white/30 rounded-xl p-6 text-center hover:scale-105 transition-transform duration-300"
-              >
-                <div className="text-3xl mb-2">{stat.icon}</div>
-                <div className="text-2xl md:text-3xl font-bold text-amber-400 mb-1">
-                  {stat.number}
-                </div>
-                <div className="text-sm md:text-base text-white font-medium">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto mt-20">
+  {stats.map((stat, index) => (
+    <div
+      key={index}
+      className="w-40 h-40 backdrop-blur-sm bg-white/20 border border-white/30 rounded-xl py-4 px-2 text-center hover:scale-105 transition-transform duration-300"
+    >
+      <div className="text-2xl mb-1">{stat.icon}</div>
+      <div className="text-xl md:text-2xl font-bold text-amber-400 mb-1">
+        {stat.number}
+      </div>
+      <div className="text-xs md:text-sm text-white font-medium">
+        {stat.label}
+      </div>
+    </div>
+  ))}
+</div>
+
         </div>
       </div>
 

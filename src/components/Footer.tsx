@@ -46,7 +46,7 @@ const Footer = () => {
                 <span className="text-primary-foreground font-bold text-xl">NBT</span>
               </div>
               <div>
-                <h3 className="font-bold text-lg">NavBharat Tours</h3>
+                <h3 className="font-bold text-lg">TravelMergeHolidays</h3>
                 <p className="text-sm text-muted">Creating Lifetime Memories</p>
               </div>
             </div>
