@@ -62,7 +62,7 @@ const Hero = () => {
     { number: "1M+", label: "TRAVELERS", icon: "👥" },
     { number: "60+ Yrs. of", label: "EXPERIENCE", icon: "🏆" },
     { number: "Top Quality", label: "FOOD", icon: "🍽️" },
-    { number: "Best Price", label: "GUARANTEED", icon: "💎" },
+    { number: "Best Price", label: "GAURENTED", icon: "💎" },
   ];
 
   return (
@@ -87,26 +87,31 @@ const Hero = () => {
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 hero-text">
             Let us Help You Plan Your
           </h1>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-amber-400 mb-8 hero-text">
-            Lifetime Memories
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-8 hero-text">
+            Unforgettable Trips
           </h2>
 
           {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mb-16" ref={searchRef}>
-            <div className="relative backdrop-blur-sm bg-white/90 rounded-full p-2 shadow-lg">
+          <div className="max-w-xl mx-auto mb-16" ref={searchRef}>
+            <div className="relative backdrop-blur-sm bg-white/90 rounded-lg p-2 shadow-lg">
               <div className="flex items-center">
                 <Input
                   type="text"
-                  placeholder="Search Destinations (Kashmir, Goa, Rajasthan...)"
+                  placeholder="Search Destinations (Goa, Kashmir, Rajasthan...)"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="border-0 bg-transparent text-gray-800 placeholder:text-gray-600 focus-visible:ring-0 focus-visible:ring-offset-0 text-lg px-6"
+                  className="border-0 bg-transparent text-gray-800 placeholder:text-gray-600 focus-visible:ring-0 focus-visible:ring-offset-0 text-base px-4"
                 />
+<<<<<<< HEAD
                 <Button
                   size="icon"
                   className="rounded-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
                 >
                   <Search className="h-5 w-5 text-white" />
+=======
+                <Button size="icon" className="rounded-md bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600">
+                  <Search className="h-5 w-5" />
+>>>>>>> 51d8b1fbd9e6f88a406ddab08e1fcdd58a3ed084
                 </Button>
               </div>
 
@@ -145,18 +150,25 @@ const Hero = () => {
             </div>
           </div>
 
+<<<<<<< HEAD
           {/* Stats */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
+=======
+          {/* Statistics */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+>>>>>>> 51d8b1fbd9e6f88a406ddab08e1fcdd58a3ed084
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="backdrop-blur-sm bg-white/20 border border-white/30 rounded-xl p-6 text-center hover:scale-105 transition-transform duration-300"
+                className="backdrop-blur-sm bg-amber-900/80 rounded-2xl p-4 text-center hover:scale-105 transition-transform duration-300 flex flex-col items-center"
               >
-                <div className="text-3xl mb-2">{stat.icon}</div>
-                <div className="text-2xl md:text-3xl font-bold text-amber-400 mb-1">
+                <div className="w-12 h-12 bg-amber-700 rounded-full flex items-center justify-center mb-3">
+                  <div className="text-white text-lg">{stat.icon}</div>
+                </div>
+                <div className="text-lg md:text-xl font-bold text-white mb-1">
                   {stat.number}
                 </div>
-                <div className="text-sm md:text-base text-white font-medium">
+                <div className="text-xs md:text-sm text-amber-100 font-medium">
                   {stat.label}
                 </div>
               </div>
