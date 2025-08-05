@@ -1,177 +1,104 @@
-import { useState, useRef, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Search, MapPin } from "lucide-react";
-import heroImage from "@/assets/background.png"; // Your image
+import { useState } from "react";
 
 const Hero = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [showResults, setShowResults] = useState(false);
-  const [filteredDestinations, setFilteredDestinations] = useState([]);
-  const searchRef = useRef(null);
+  const [activeTab, setActiveTab] = useState("Central India");
 
-  const destinations = [
-    { name: "Kashmir", type: "Hill Station", description: "Paradise on Earth with beautiful valleys" },
-    { name: "Goa", type: "Beach", description: "Beautiful beaches and nightlife" },
-    { name: "Rajasthan", type: "Heritage", description: "Royal palaces and desert culture" },
-    { name: "Kerala", type: "Backwaters", description: "God's own country with backwaters" },
-    { name: "Himachal Pradesh", type: "Mountain", description: "Snow-capped mountains and valleys" },
-    { name: "Uttarakhand", type: "Adventure", description: "Spiritual and adventure destinations" },
-    { name: "Andaman", type: "Island", description: "Crystal clear waters and coral reefs" },
-    { name: "Leh Ladakh", type: "Adventure", description: "High altitude desert mountains" },
-    { name: "Manali", type: "Hill Station", description: "Popular hill station in Himachal" },
-    { name: "Shimla", type: "Hill Station", description: "Queen of hills" },
-    { name: "Darjeeling", type: "Hill Station", description: "Tea gardens and mountain views" },
-    { name: "Agra", type: "Heritage", description: "Home to the iconic Taj Mahal" },
-  ];
+  const tabs = ["North India", "South India", "East India", "West India", "Central India"];
 
-  useEffect(() => {
-    if (searchQuery.trim() === "") {
-      setFilteredDestinations([]);
-      setShowResults(false);
-      return;
-    }
-
-    const filtered = destinations.filter(destination =>
-      destination.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      destination.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      destination.description.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    setFilteredDestinations(filtered);
-    setShowResults(true);
-  }, [searchQuery]);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (searchRef.current && !searchRef.current.contains(event.target)) {
-        setShowResults(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  const handleDestinationClick = (destination) => {
-    setSearchQuery(destination.name);
-    setShowResults(false);
+  const destinations = {
+    "North India": [
+      { name: "Kashmir", packages: "25+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "large" },
+      { name: "Himachal Pradesh", packages: "30+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
+      { name: "Uttarakhand", packages: "20+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
+      { name: "Punjab", packages: "15+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "small" },
+    ],
+    "South India": [
+      { name: "Kerala", packages: "35+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "large" },
+      { name: "Tamil Nadu", packages: "28+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
+      { name: "Karnataka", packages: "22+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
+      { name: "Andhra Pradesh", packages: "18+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "small" },
+    ],
+    "East India": [
+      { name: "West Bengal", packages: "25+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "large" },
+      { name: "Odisha", packages: "20+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
+      { name: "Jharkhand", packages: "15+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
+      { name: "Assam", packages: "18+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "small" },
+    ],
+    "West India": [
+      { name: "Rajasthan", packages: "40+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "large" },
+      { name: "Gujarat", packages: "25+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
+      { name: "Goa", packages: "30+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
+      { name: "Maharashtra", packages: "35+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "small" },
+    ],
+    "Central India": [
+      { name: "Madhya Pradesh", packages: "30+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "large" },
+      { name: "Chhattisgarh", packages: "20+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
+      { name: "Kanha National Park", packages: "15+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
+      { name: "Khajuraho", packages: "18+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "small" },
+      { name: "Bandhavgarh", packages: "15+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
+      { name: "Bhopal", packages: "20+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "small" },
+      { name: "Ujjain", packages: "15+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "small" },
+    ],
   };
 
-  const stats = [
-    { number: "1M+", label: "TRAVELERS", icon: "👥" },
-    { number: "60+ Yrs. of", label: "EXPERIENCE", icon: "🏆" },
-    { number: "Top Quality", label: "FOOD", icon: "🍽️" },
-    { number: "Best Price", label: "GUARANTEED", icon: "💎" },
-  ];
+  const getCardClasses = (size: string) => {
+    switch (size) {
+      case "large":
+        return "col-span-2 row-span-2 h-80";
+      case "medium":
+        return "col-span-1 row-span-2 h-80";
+      case "small":
+        return "col-span-1 row-span-1 h-36";
+      default:
+        return "col-span-1 row-span-1 h-36";
+    }
+  };
 
   return (
-  <section className="relative min-h-[80vh] flex items-center justify-center overflow-visible z-0">
+    <section className="py-16 bg-background">
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-foreground">
+          Explore Top Destinations by Region
+        </h2>
 
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      />
-      
-      {/* Gradient Overlay */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: "linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5))",
-        }}
-      />
-
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 hero-text">
-            Let us Help You Plan Your
-          </h1>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-blue-400 mb-8 hero-text">
-            Lifetime Memories
-          </h2>
-
-          {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mb-16 relative z-50" ref={searchRef}>
-
-            <div className="relative backdrop-blur-sm bg-white/90 rounded-full p-2 shadow-lg">
-              <div className="flex items-center">
-                <Input
-                  type="text"
-                  placeholder="Search Destinations (Kashmir, Goa, Rajasthan...)"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="border-0 bg-transparent text-gray-800 placeholder:text-gray-600 focus-visible:ring-0 focus-visible:ring-offset-0 text-lg px-6"
-                />
-                <Button
-                  size="icon"
-                  className="rounded-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
-                >
-                  <Search className="h-5 w-5 text-white" />
-                </Button>
-              </div>
-
-              {/* Results */}
-              {showResults && filteredDestinations.length > 0 && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-2xl border border-gray-200 max-h-80 overflow-y-auto z-50">
-                  {filteredDestinations.map((destination, index) => (
-                    <div
-                      key={index}
-                      onClick={() => handleDestinationClick(destination)}
-                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors"
-                    >
-                      <div className="flex-shrink-0">
-                        <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center">
-                          <MapPin className="h-4 w-4 text-white" />
-                        </div>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="font-semibold text-gray-800 text-sm truncate">{destination.name}</div>
-                        <div className="text-xs text-blue-600 font-medium">{destination.type}</div>
-                        <div className="text-xs text-gray-600 line-clamp-1">{destination.description}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* No Results */}
-              {showResults && filteredDestinations.length === 0 && searchQuery.trim() !== "" && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-2xl border border-gray-200 p-4 z-50">
-                  <div className="text-center text-gray-500 text-sm">
-                    No destinations found for "{searchQuery}"
-                  </div>
-                </div>
-              )}
-            </div>
+        {/* Tabs */}
+        <div className="flex justify-center mb-12">
+          <div className="flex flex-wrap justify-center gap-4 bg-muted/30 p-2 rounded-lg">
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+                  activeTab === tab
+                    ? "bg-primary text-primary-foreground shadow-md"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
           </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto mt-20">
-  {stats.map((stat, index) => (
-    <div
-      key={index}
-      className="w-40 h-40 backdrop-blur-sm bg-white/20 border border-white/30 rounded-xl py-4 px-2 text-center hover:scale-105 transition-transform duration-300"
-    >
-      <div className="text-2xl mb-1">{stat.icon}</div>
-      <div className="text-xl md:text-2xl font-bold text-amber-400 mb-1">
-        {stat.number}
-      </div>
-      <div className="text-xs md:text-sm text-white font-medium">
-        {stat.label}
-      </div>
-    </div>
-  ))}
-</div>
-
         </div>
-      </div>
 
-      {/* Scroll Down Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
+        {/* Destination Grid */}
+        <div className="grid grid-cols-4 auto-rows-min gap-4 max-w-6xl mx-auto">
+          {destinations[activeTab]?.map((destination, index) => (
+            <div
+              key={index}
+              className={`relative rounded-2xl overflow-hidden group cursor-pointer ${getCardClasses(destination.size)}`}
+            >
+              <div
+                className="w-full h-full bg-cover bg-center"
+                style={{ backgroundImage: `url(${destination.image})` }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4">
+                <h3 className="text-white text-xl font-bold mb-1">{destination.name}</h3>
+                <p className="text-orange-400 text-sm font-medium">{destination.packages}</p>
+              </div>
+              <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+          ))}
         </div>
       </div>
     </section>
