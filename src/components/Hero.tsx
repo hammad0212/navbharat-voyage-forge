@@ -1,104 +1,137 @@
 import { useState } from "react";
 
 const Hero = () => {
-  const [activeTab, setActiveTab] = useState("Central India");
+  const [activeCategory, setActiveCategory] = useState("Wildlife");
 
-  const tabs = ["North India", "South India", "East India", "West India", "Central India"];
+  const categories = [
+    { name: "Wildlife", packages: "70+", icon: "🐅" },
+    { name: "Heritage", packages: "25+", icon: "🏛️" },
+    { name: "Trekking", packages: "70+", icon: "🏔️" },
+  ];
 
-  const destinations = {
-    "North India": [
-      { name: "Kashmir", packages: "25+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "large" },
-      { name: "Himachal Pradesh", packages: "30+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
-      { name: "Uttarakhand", packages: "20+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
-      { name: "Punjab", packages: "15+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "small" },
-    ],
-    "South India": [
-      { name: "Kerala", packages: "35+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "large" },
-      { name: "Tamil Nadu", packages: "28+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
-      { name: "Karnataka", packages: "22+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
-      { name: "Andhra Pradesh", packages: "18+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "small" },
-    ],
-    "East India": [
-      { name: "West Bengal", packages: "25+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "large" },
-      { name: "Odisha", packages: "20+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
-      { name: "Jharkhand", packages: "15+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
-      { name: "Assam", packages: "18+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "small" },
-    ],
-    "West India": [
-      { name: "Rajasthan", packages: "40+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "large" },
-      { name: "Gujarat", packages: "25+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
-      { name: "Goa", packages: "30+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
-      { name: "Maharashtra", packages: "35+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "small" },
-    ],
-    "Central India": [
-      { name: "Madhya Pradesh", packages: "30+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "large" },
-      { name: "Chhattisgarh", packages: "20+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
-      { name: "Kanha National Park", packages: "15+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
-      { name: "Khajuraho", packages: "18+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "small" },
-      { name: "Bandhavgarh", packages: "15+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "medium" },
-      { name: "Bhopal", packages: "20+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "small" },
-      { name: "Ujjain", packages: "15+ PACKAGES", image: "/lovable-uploads/435fb14f-4a36-4e03-af38-510abc6faec4.png", size: "small" },
-    ],
-  };
-
-  const getCardClasses = (size: string) => {
-    switch (size) {
-      case "large":
-        return "col-span-2 row-span-2 h-80";
-      case "medium":
-        return "col-span-1 row-span-2 h-80";
-      case "small":
-        return "col-span-1 row-span-1 h-36";
-      default:
-        return "col-span-1 row-span-1 h-36";
-    }
-  };
+  const tours = [
+    {
+      title: "Chardham Yatra Package 2025",
+      duration: "11 Nights - 12 Days",
+      bgColor: "from-blue-400 to-teal-400"
+    },
+    {
+      title: "Golden Triangle Tour",
+      duration: "6 Nights - 7 Days", 
+      bgColor: "from-amber-400 to-orange-400"
+    },
+    {
+      title: "Leh Ladakh Tours",
+      duration: "6 Nights - 7 Days",
+      bgColor: "from-purple-400 to-blue-400"
+    },
+    {
+      title: "Adi Kailash Yatra 2025",
+      duration: "8 Nights - 9 Days",
+      bgColor: "from-green-400 to-emerald-400"
+    },
+    {
+      title: "Best of Sikkim Tour",
+      duration: "8 Nights - 9 Days",
+      bgColor: "from-pink-400 to-rose-400"
+    },
+  ];
 
   return (
-    <section className="py-16 bg-background">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-foreground">
-          Explore Top Destinations by Region
-        </h2>
+    <section className="relative min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          
+          {/* Left Side - Main Content */}
+          <div className="space-y-8">
+            <div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight">
+                Let us plan you a perfect{" "}
+                <span className="text-orange-500">India Holiday</span>
+              </h1>
+              <p className="text-lg text-gray-600 mt-4 leading-relaxed">
+                Tour My India, one of the best travel agencies in India, offers custom-crafted tour packages for unforgettable holiday experiences across the country.
+              </p>
+            </div>
 
-        {/* Tabs */}
-        <div className="flex justify-center mb-12">
-          <div className="flex flex-wrap justify-center gap-4 bg-muted/30 p-2 rounded-lg">
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
-                  activeTab === tab
-                    ? "bg-primary text-primary-foreground shadow-md"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                }`}
+            {/* Categories */}
+            <div className="flex flex-wrap gap-6">
+              {categories.map((category) => (
+                <div
+                  key={category.name}
+                  onClick={() => setActiveCategory(category.name)}
+                  className={`cursor-pointer p-6 rounded-xl border-2 transition-all duration-300 ${
+                    activeCategory === category.name
+                      ? "border-orange-500 bg-orange-50"
+                      : "border-gray-200 hover:border-orange-300"
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl">{category.icon}</span>
+                    <div>
+                      <h3 className="font-semibold text-gray-800">{category.name}</h3>
+                      <p className="text-sm text-gray-600">{category.packages} Packages</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Category Content */}
+            <div className="grid md:grid-cols-3 gap-4">
+              {[1, 2, 3].map((item) => (
+                <div
+                  key={item}
+                  className="h-32 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg border border-orange-200 flex items-center justify-center"
+                >
+                  <div className="text-center">
+                    <div className="text-2xl mb-2">🎯</div>
+                    <p className="text-sm font-medium text-gray-700">
+                      {activeCategory} Experience {item}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Side - Tour Cards */}
+          <div className="space-y-4">
+            {tours.map((tour, index) => (
+              <div
+                key={index}
+                className={`relative p-6 rounded-xl bg-gradient-to-r ${tour.bgColor} text-white shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer`}
               >
-                {tab}
-              </button>
+                <div className="relative z-10">
+                  <h3 className="text-xl font-bold mb-2">{tour.title}</h3>
+                  <p className="text-white/90">{tour.duration}</p>
+                </div>
+                <div className="absolute inset-0 bg-black/10 rounded-xl"></div>
+              </div>
             ))}
           </div>
         </div>
 
-        {/* Destination Grid */}
-        <div className="grid grid-cols-4 auto-rows-min gap-4 max-w-6xl mx-auto">
-          {destinations[activeTab]?.map((destination, index) => (
-            <div
-              key={index}
-              className={`relative rounded-2xl overflow-hidden group cursor-pointer ${getCardClasses(destination.size)}`}
-            >
-              <div
-                className="w-full h-full bg-cover bg-center"
-                style={{ backgroundImage: `url(${destination.image})` }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4">
-                <h3 className="text-white text-xl font-bold mb-1">{destination.name}</h3>
-                <p className="text-orange-400 text-sm font-medium">{destination.packages}</p>
-              </div>
-              <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        {/* Bottom Icons */}
+        <div className="flex justify-center items-center gap-12 mt-16 pt-8 border-t border-gray-200">
+          <div className="text-center">
+            <div className="w-12 h-12 mx-auto mb-2 bg-blue-100 rounded-full flex items-center justify-center">
+              <span className="text-xl">🇮🇳</span>
             </div>
-          ))}
+            <p className="text-sm font-medium text-gray-700">India Tours</p>
+          </div>
+          <div className="text-center">
+            <div className="w-12 h-12 mx-auto mb-2 bg-purple-100 rounded-full flex items-center justify-center">
+              <span className="text-xl">🌍</span>
+            </div>
+            <p className="text-sm font-medium text-gray-700">International Tours</p>
+          </div>
+          <div className="text-center">
+            <div className="w-12 h-12 mx-auto mb-2 bg-pink-100 rounded-full flex items-center justify-center">
+              <span className="text-xl">💒</span>
+            </div>
+            <p className="text-sm font-medium text-gray-700">Destination Wedding</p>
+          </div>
         </div>
       </div>
     </section>
