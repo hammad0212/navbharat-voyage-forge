@@ -1,137 +1,174 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Search, MapPin } from "lucide-react";
+import heroImage from "@/assets/background.png"; // Ensure this path is correct
 
 const Hero = () => {
-  const [activeCategory, setActiveCategory] = useState("Wildlife");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showResults, setShowResults] = useState(false);
+  const [filteredDestinations, setFilteredDestinations] = useState([]);
+  const searchRef = useRef(null);
 
-  const categories = [
-    { name: "Wildlife", packages: "70+", icon: "🐅" },
-    { name: "Heritage", packages: "25+", icon: "🏛️" },
-    { name: "Trekking", packages: "70+", icon: "🏔️" },
+  const destinations = [
+    { name: "Kashmir", type: "Hill Station", description: "Paradise on Earth with beautiful valleys" },
+    { name: "Goa", type: "Beach", description: "Beautiful beaches and nightlife" },
+    { name: "Rajasthan", type: "Heritage", description: "Royal palaces and desert culture" },
+    { name: "Kerala", type: "Backwaters", description: "God's own country with backwaters" },
+    { name: "Himachal Pradesh", type: "Mountain", description: "Snow-capped mountains and valleys" },
+    { name: "Uttarakhand", type: "Adventure", description: "Spiritual and adventure destinations" },
+    { name: "Andaman", type: "Island", description: "Crystal clear waters and coral reefs" },
+    { name: "Leh Ladakh", type: "Adventure", description: "High altitude desert mountains" },
+    { name: "Manali", type: "Hill Station", description: "Popular hill station in Himachal" },
+    { name: "Shimla", type: "Hill Station", description: "Queen of hills" },
+    { name: "Darjeeling", type: "Hill Station", description: "Tea gardens and mountain views" },
+    { name: "Agra", type: "Heritage", description: "Home to the iconic Taj Mahal" },
   ];
 
-  const tours = [
-    {
-      title: "Chardham Yatra Package 2025",
-      duration: "11 Nights - 12 Days",
-      bgColor: "from-blue-400 to-teal-400"
-    },
-    {
-      title: "Golden Triangle Tour",
-      duration: "6 Nights - 7 Days", 
-      bgColor: "from-amber-400 to-orange-400"
-    },
-    {
-      title: "Leh Ladakh Tours",
-      duration: "6 Nights - 7 Days",
-      bgColor: "from-purple-400 to-blue-400"
-    },
-    {
-      title: "Adi Kailash Yatra 2025",
-      duration: "8 Nights - 9 Days",
-      bgColor: "from-green-400 to-emerald-400"
-    },
-    {
-      title: "Best of Sikkim Tour",
-      duration: "8 Nights - 9 Days",
-      bgColor: "from-pink-400 to-rose-400"
-    },
+  useEffect(() => {
+    if (searchQuery.trim() === "") {
+      setFilteredDestinations([]);
+      setShowResults(false);
+      return;
+    }
+
+    const filtered = destinations.filter((destination) =>
+      destination.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      destination.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      destination.description.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    setFilteredDestinations(filtered);
+    setShowResults(true);
+  }, [searchQuery]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !(searchRef.current as any).contains(event.target)) {
+        setShowResults(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleDestinationClick = (destination: any) => {
+    setSearchQuery(destination.name);
+    setShowResults(false);
+  };
+
+  const stats = [
+    { number: "1M+", label: "TRAVELERS", icon: "👥" },
+    { number: "60+ Yrs. of", label: "EXPERIENCE", icon: "🏆" },
+    { number: "Top Quality", label: "FOOD", icon: "🍽️" },
+    { number: "Best Price", label: "GUARANTEED", icon: "💎" },
   ];
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          
-          {/* Left Side - Main Content */}
-          <div className="space-y-8">
-            <div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight">
-                Let us plan you a perfect{" "}
-                <span className="text-orange-500">India Holiday</span>
-              </h1>
-              <p className="text-lg text-gray-600 mt-4 leading-relaxed">
-                Tour My India, one of the best travel agencies in India, offers custom-crafted tour packages for unforgettable holiday experiences across the country.
-              </p>
-            </div>
+    <section className="relative min-h-[80vh] flex items-center justify-center overflow-visible z-0">
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroImage})` }}
+      />
 
-            {/* Categories */}
-            <div className="flex flex-wrap gap-6">
-              {categories.map((category) => (
-                <div
-                  key={category.name}
-                  onClick={() => setActiveCategory(category.name)}
-                  className={`cursor-pointer p-6 rounded-xl border-2 transition-all duration-300 ${
-                    activeCategory === category.name
-                      ? "border-orange-500 bg-orange-50"
-                      : "border-gray-200 hover:border-orange-300"
-                  }`}
+      {/* Gradient Overlay */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5))",
+        }}
+      />
+
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-4 text-center">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 hero-text">
+            Let us Help You Plan Your
+          </h1>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-blue-400 mb-8 hero-text">
+            Lifetime Memories
+          </h2>
+
+          {/* Search Bar */}
+          <div className="max-w-2xl mx-auto mb-16 relative z-50" ref={searchRef}>
+            <div className="relative backdrop-blur-sm bg-white/90 rounded-full p-2 shadow-lg">
+              <div className="flex items-center">
+                <Input
+                  type="text"
+                  placeholder="Search Destinations (Kashmir, Goa, Rajasthan...)"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="border-0 bg-transparent text-gray-800 placeholder:text-gray-600 focus-visible:ring-0 focus-visible:ring-offset-0 text-lg px-6"
+                />
+                <Button
+                  size="icon"
+                  className="rounded-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{category.icon}</span>
-                    <div>
-                      <h3 className="font-semibold text-gray-800">{category.name}</h3>
-                      <p className="text-sm text-gray-600">{category.packages} Packages</p>
+                  <Search className="h-5 w-5 text-white" />
+                </Button>
+              </div>
+
+              {/* Results */}
+              {showResults && filteredDestinations.length > 0 && (
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-2xl border border-gray-200 max-h-80 overflow-y-auto z-50">
+                  {filteredDestinations.map((destination, index) => (
+                    <div
+                      key={index}
+                      onClick={() => handleDestinationClick(destination)}
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors"
+                    >
+                      <div className="flex-shrink-0">
+                        <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center">
+                          <MapPin className="h-4 w-4 text-white" />
+                        </div>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="font-semibold text-gray-800 text-sm truncate">{destination.name}</div>
+                        <div className="text-xs text-blue-600 font-medium">{destination.type}</div>
+                        <div className="text-xs text-gray-600 line-clamp-1">{destination.description}</div>
+                      </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              )}
 
-            {/* Category Content */}
-            <div className="grid md:grid-cols-3 gap-4">
-              {[1, 2, 3].map((item) => (
-                <div
-                  key={item}
-                  className="h-32 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg border border-orange-200 flex items-center justify-center"
-                >
-                  <div className="text-center">
-                    <div className="text-2xl mb-2">🎯</div>
-                    <p className="text-sm font-medium text-gray-700">
-                      {activeCategory} Experience {item}
-                    </p>
+              {/* No Results */}
+              {showResults && filteredDestinations.length === 0 && searchQuery.trim() !== "" && (
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-2xl border border-gray-200 p-4 z-50">
+                  <div className="text-center text-gray-500 text-sm">
+                    No destinations found for "{searchQuery}"
                   </div>
                 </div>
-              ))}
+              )}
             </div>
           </div>
 
-          {/* Right Side - Tour Cards */}
-          <div className="space-y-4">
-            {tours.map((tour, index) => (
+          {/* Stats */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            {stats.map((stat, index) => (
               <div
                 key={index}
-                className={`relative p-6 rounded-xl bg-gradient-to-r ${tour.bgColor} text-white shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer`}
+                className="backdrop-blur-sm bg-white/20 border border-white/30 rounded-xl p-6 text-center hover:scale-105 transition-transform duration-300"
               >
-                <div className="relative z-10">
-                  <h3 className="text-xl font-bold mb-2">{tour.title}</h3>
-                  <p className="text-white/90">{tour.duration}</p>
+                <div className="text-3xl mb-2">{stat.icon}</div>
+                <div className="text-2xl md:text-3xl font-bold text-amber-400 mb-1">
+                  {stat.number}
                 </div>
-                <div className="absolute inset-0 bg-black/10 rounded-xl"></div>
+                <div className="text-sm md:text-base text-white font-medium">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
         </div>
+      </div>
 
-        {/* Bottom Icons */}
-        <div className="flex justify-center items-center gap-12 mt-16 pt-8 border-t border-gray-200">
-          <div className="text-center">
-            <div className="w-12 h-12 mx-auto mb-2 bg-blue-100 rounded-full flex items-center justify-center">
-              <span className="text-xl">🇮🇳</span>
-            </div>
-            <p className="text-sm font-medium text-gray-700">India Tours</p>
-          </div>
-          <div className="text-center">
-            <div className="w-12 h-12 mx-auto mb-2 bg-purple-100 rounded-full flex items-center justify-center">
-              <span className="text-xl">🌍</span>
-            </div>
-            <p className="text-sm font-medium text-gray-700">International Tours</p>
-          </div>
-          <div className="text-center">
-            <div className="w-12 h-12 mx-auto mb-2 bg-pink-100 rounded-full flex items-center justify-center">
-              <span className="text-xl">💒</span>
-            </div>
-            <p className="text-sm font-medium text-gray-700">Destination Wedding</p>
-          </div>
+      {/* Scroll Down Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
     </section>
