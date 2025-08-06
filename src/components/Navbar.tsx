@@ -8,12 +8,12 @@ const Navbar = () => {
 
   const navItems = [
     { name: "Home", href: "#" },
-    { name: "About Us", href: "#about" },
+    { name: "About Us", href: "/about" },
     { name: "Group Tours", href: "#tours" },
     { name: "Customize Tour", href: "#customize" },
     { name: "Signature Holidays", href: "#holidays" },
     { name: "Vehicle On Rent", href: "#vehicles" },
-    { name: "Contact Us", href: "#contact" },
+    { name: "Contact Us", href: "/contact" },
   ];
 
   return (

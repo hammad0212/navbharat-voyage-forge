@@ -3,6 +3,9 @@ import Hero from "@/components/Hero";
 import WinterTours from "@/components/WinterTours";
 import Footer from "@/components/Footer";
 import FeaturedTours from "@/components/FeaturedTours";
+import Contact from "./Contact";
+import StickyFooterBar from "@/components/StickyFooterBar";
+
 
 const Index = () => {
   return (
@@ -12,6 +15,9 @@ const Index = () => {
       <WinterTours />
       <FeaturedTours />
       <Footer />
+      <StickyFooterBar />
+     
+      
     </div>
   );
 };
