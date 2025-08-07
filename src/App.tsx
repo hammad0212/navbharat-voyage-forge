@@ -8,6 +8,9 @@ import SearchTours from "./pages/SearchTours";
 import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import ScrollToTop from "./pages/ScrollToTop";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 
 const queryClient = new QueryClient();
@@ -18,7 +21,11 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+       <ScrollToTop /> 
+       <Navbar />
+       
         <Routes>
+          
           <Route path="/" element={<Index />} />
           <Route path="/search-tours" element={<SearchTours />} />
           <Route path="/about" element={<About />} />
@@ -29,6 +36,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

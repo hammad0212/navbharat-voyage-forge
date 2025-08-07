@@ -2,12 +2,15 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import logo from '../assets/travel merge logo white.png'; 
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+const location = useLocation();
+const isHome = location.pathname === "/";
 
   const navItems = [
-    { name: "Home", href: "#" },
+    { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
     { name: "Group Tours", href: "#tours" },
     { name: "Customize Tour", href: "#customize" },
@@ -19,7 +22,7 @@ const Navbar = () => {
   return (
     <header className="relative">
       {/* Top contact bar */}
-      <div className="bg-blue-500 text-primary-foreground py-2 px-4">
+      {isHome && <div className="bg-blue-500 text-primary-foreground py-2 px-4">
   <div className="container mx-auto flex flex-wrap items-center justify-between text-sm">
     <div className="flex items-center space-x-4">
       <div className="flex items-center space-x-1">
@@ -32,7 +35,7 @@ const Navbar = () => {
       </div>
     </div>
   </div>
-</div>
+</div>}
 
 
       {/* Main navbar */}

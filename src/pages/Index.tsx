@@ -10,11 +10,11 @@ import StickyFooterBar from "@/components/StickyFooterBar";
 const Index = () => {
   return (
     <div className="min-h-screen">
-      <Navbar />
+      
       <Hero />
       <WinterTours />
       <FeaturedTours />
-      <Footer />
+      
       <StickyFooterBar />
      
       
